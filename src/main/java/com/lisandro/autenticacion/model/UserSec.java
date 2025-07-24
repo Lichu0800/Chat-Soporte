@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,5 +41,14 @@ public class UserSec {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> rolesList = new HashSet<>();
+
+
+    // DATOS DEL USER
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    private Set<Message> sentMessages;
+
+    @OneToMany (mappedBy = "receiver", cascade = CascadeType.ALL)
+    private Set<Message> receivedMessages;
+
 
 }
