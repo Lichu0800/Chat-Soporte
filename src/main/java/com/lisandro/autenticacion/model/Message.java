@@ -38,6 +38,4 @@ public class Message {
     private LocalDateTime timestamp;
     private boolean read;
 
-    private Conversation conversation;
-
 }
